@@ -1,0 +1,7 @@
+{
+  "name": "SoundShare",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "soundshare",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

@@ -16,3 +16,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules)), provideFirebaseApp(() => initializeApp({"projectId":"sound-share-dfbf7","appId":"1:1004875925541:web:11c46e922d2f22cbdb97cc","storageBucket":"sound-share-dfbf7.firebasestorage.app","apiKey":"AIzaSyAgguvHGUPXRlOjGIo7aCKJMgzFBcMmulE","authDomain":"sound-share-dfbf7.firebaseapp.com","messagingSenderId":"1004875925541","measurementId":"G-K443HQ8B2V"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideDatabase(() => getDatabase()),
   ],
 });
+
+//test 123

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>SoundShare</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">test</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <h1>Welcome to SoundShare</h1>
+
+  <form (ngSubmit)="login()" [formGroup]="credentials">
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <input placeholder="Email" type="email" formControlName="email"/>
+      <ion-note slot="error" *ngIf="(email?.dirty || email?.touched) && email?.errors">Email is invalid</ion-note>
+    </ion-item>
+    
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <input type="password" placeholder="Password" formControlName="password"/>
+      <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">
+        Password needs to be 6 characters
+      </ion-note>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
+    <ion-button type="button" expand="block" color="secondary" [routerLink]="'../signup'">Sign Up</ion-button>
+  </form>
+</ion-content>

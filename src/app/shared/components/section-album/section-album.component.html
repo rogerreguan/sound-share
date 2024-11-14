@@ -1,0 +1,11 @@
+<section class="listing">
+  <h2 class="listing-heading">{{ iAlbum.title }}</h2>
+  <p class="listing-location">{{ iAlbum.artist}}</p>
+  <p class="listing-location">{{ iAlbum.year}}</p>
+  <p class="listing-location">{{ iAlbum.tracklist}}</p>
+  <p class="listing-location">{{ iAlbum.stars}}</p>
+  <p class="listing-location">{{ iAlbum.opinion}}</p>
+  <p class="listing-location" *ngIf="iAlbum.actiu === true">Disponible: Si</p>
+  <p class="listing-location" *ngIf="iAlbum.actiu === false">Disponible: No</p>
+  <!-- <p class="listing-location">{{ iAlbum.user}}</p> -->
+</section>

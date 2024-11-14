@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Share your sound
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +12,24 @@
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div>
+    <form [formGroup]="albumForm">
+        
+      title:
+      <input type="text" formControlName="title" /> <br/>
+  
+      artist:
+      <input type="text" formControlName="artist" /> <br/>
+  
+      year:
+      <input type="text" formControlName="year" /> <br/>
+  
+      tracklist:
+      <input type="text" formControlName="tracklist" /> <br/>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+      <ion-button type="button" (click)="saveAlbum()">Share</ion-button>
+  
+    </form>     
+
+  </div>
 </ion-content>

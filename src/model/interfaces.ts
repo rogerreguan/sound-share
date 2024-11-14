@@ -1,11 +1,11 @@
 export interface IAlbum {
-    id: string;
+    id?: string;
     title: string;
     artist: string;
     year: number;
     tracklist: string;
     rank: number;
-    opinion: string;
+    opinion?: string;
     actiu: boolean;
     user?: string;
 }

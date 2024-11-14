@@ -55,8 +55,9 @@ export class Tab2Page implements OnInit {
   }
 
   getAlbums() {
-    const v: IAlbum[] = this.albumsService.getAlbums();
+    const a: IAlbum[] = this.albumsService.getAlbums();
     this.albums = a;
+    console.log(this.albums);
   }
 
 }

@@ -12,6 +12,8 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+
+  <section class="results">
+    <app-section-album *ngFor="let album of ListAlbums" [iAlbum]="album"></app-section-album>
+  </section>
 </ion-content>

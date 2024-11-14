@@ -4,7 +4,7 @@ export interface IAlbum {
     artist: string;
     year: number;
     tracklist: string;
-    rank: number;
+    stars: number;
     opinion?: string;
     actiu: boolean;
     user?: string;

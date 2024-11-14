@@ -47,20 +47,19 @@ export class Tab2Page{
         artist: this.albumForm.get('artist')!.value,
         year: +this.albumForm.get('year')!.value,
         tracklist: this.albumForm.get('tracklist')!.value,
-        rank: +this.albumForm.get('rank')!.value,
+        stars: +this.albumForm.get('rank')!.value,
         actiu: true
       }
       this.albumsService.addAlbum(a);
-      this.getAlbums();
     } else {
       alert('formulari invàlid');
     }
   }
 
   getAlbums() {
-    const a: IAlbum[] = this.albumsService.getAlbums();
-    this.albums = a;
-    console.log(this.albums);
+    this.albumsService.getAlbums().subscribe((albums: IAlbum[]) => {
+      this.albums = albums;
+    });
   }
 
 }

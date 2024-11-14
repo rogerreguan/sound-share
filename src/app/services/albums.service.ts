@@ -1,36 +1,34 @@
 import { Injectable } from '@angular/core';
+import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { IAlbum } from 'src/model/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlbumsService {
+  
+  constructor(private firestore: Firestore) { }
 
-  public albums: IAlbum[] = [];
+  getAlbums() : Observable<IAlbum[]>{
 
-  constructor() { }
-
-  addAlbum(album: IAlbum): boolean {
-    this.albums.push(album);
-    localStorage.setItem('albums', JSON.stringify(this.albums));
-    return true;
-  }
-
-  getAlbumById(id: string) {
-    return null;
-  }
-
-  getAlbums() {
-    if (localStorage.getItem('albums') == undefined) {
-      return this.albums;
-    } else {
-      this.albums = JSON.parse(localStorage.getItem('albums')!);
-      return this.albums;
-    }
+    const colfAlbums = collection(this.firestore, 'albums');
+    return collectionData(colfAlbums, {idField: 'id'}) as Observable<IAlbum[]>;
     
   }
 
-  removeAlbum(id: string) {
-    return null
+  getAlbumById(id: number): Observable<IAlbum>{
+    const docfAlbum= doc(this.firestore, `albums/${id}`);
+      return docData(docfAlbum, {idField: 'id'}) as Observable<IAlbum>;
+  }
+
+  addAlbum(album: IAlbum){
+    const colfAlbums = collection(this.firestore, `albums`);
+    return addDoc(colfAlbums, album);
+  }
+
+  removeAlbum(album: IAlbum){
+    const docfAlbum = doc(this.firestore, `albums/${album.id}`);
+    return deleteDoc(docfAlbum);
   }
 }

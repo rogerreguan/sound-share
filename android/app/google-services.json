@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1004875925541",
+    "project_id": "sound-share-dfbf7",
+    "storage_bucket": "sound-share-dfbf7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004875925541:android:60e9a381927b7b73db97cc",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCINYIZ0_m9wrLWWqrM61f_nDsTcDOmS_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

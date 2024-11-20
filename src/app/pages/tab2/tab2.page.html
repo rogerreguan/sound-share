@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="green">
     <ion-title>
       Share your sound
     </ion-title>
@@ -15,19 +15,25 @@
   <div>
     <form [formGroup]="albumForm">
         
-      title:
-      <input type="text" formControlName="title" /> <br/>
+      title: <br/>
+      <input type="text" formControlName="title" /> <br/><br/><br/>
   
-      artist:
-      <input type="text" formControlName="artist" /> <br/>
+      artist: <br/>
+      <input type="text" formControlName="artist" /> <br/><br/><br/>
   
-      year:
-      <input type="text" formControlName="year" /> <br/>
+      year: <br/>
+      <input type="text" formControlName="year" /> <br/><br/><br/>
   
-      tracklist:
-      <input type="text" formControlName="tracklist" /> <br/>
+      tracklist: <br/>
+      <input type="text" formControlName="tracklist" /> <br/><br/><br/>
 
-      <ion-button type="button" (click)="saveAlbum()">Share</ion-button>
+      stars: <br/>
+      <input type="text" formControlName="stars" /> <br/><br/><br/>
+
+      comment: <br/>
+      <input type="text" formControlName="opinion" /> <br/><br/><br/><br/><br/><br/>
+
+      <ion-button type="button" shape="round" fill="outline" color="success" (click)="saveAlbum()">Share</ion-button>
   
     </form>     
 

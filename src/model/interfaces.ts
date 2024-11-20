@@ -9,3 +9,9 @@ export interface IAlbum {
     actiu: boolean;
     user?: string;
 }
+
+export interface IArtist {
+    name: string;
+    followers: number;
+    image: string;
+}

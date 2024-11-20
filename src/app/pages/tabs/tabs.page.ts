@@ -3,6 +3,7 @@ import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/angu
 import { addIcons } from 'ionicons';
 import { triangle, ellipse, square } from 'ionicons/icons';
 import { PushService } from 'src/app/services/push.service';
+import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
   selector: 'app-tabs',
@@ -14,9 +15,10 @@ import { PushService } from 'src/app/services/push.service';
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
 
-  constructor(private pushService: PushService) {
+  constructor(private pushService: PushService, private spotifyService: SpotifyService) {
     addIcons({ triangle, ellipse, square });
     pushService.registerNotifications();
     pushService.addListeners();
+    spotifyService.getAlbum();
   }
 }

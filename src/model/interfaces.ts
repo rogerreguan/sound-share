@@ -8,4 +8,7 @@ export interface IAlbum {
     opinion?: string;
     actiu: boolean;
     user?: string;
+    dateTime: Date;
+    date: number;
+    //hourMinute: string;
 }

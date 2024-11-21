@@ -20,6 +20,7 @@ export class Tab2Page{
   tracklist: string[] = [];
   rank: number = 0;
   opinion: string = '';
+  dateTime: Date = new Date();
 
   albums?: IAlbum[];
   albumForm!: FormGroup;
@@ -29,13 +30,19 @@ export class Tab2Page{
     this.createForm();
   }
 
+  //getTime() {
+  //  let dateTime  = new Date();
+  //  console.log(dateTime);
+  //  return dateTime;
+  //}
+
   createForm() {
     this.albumForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       artist: new FormControl('', [Validators.required]),
       year: new FormControl(''),
       tracklist: new FormControl('') ,
-      rank: new FormControl(''),
+      stars: new FormControl(''),
       opinion: new FormControl(''),
     });
   }
@@ -47,9 +54,13 @@ export class Tab2Page{
         artist: this.albumForm.get('artist')!.value,
         year: +this.albumForm.get('year')!.value,
         tracklist: this.albumForm.get('tracklist')!.value,
-        stars: +this.albumForm.get('rank')!.value,
+        stars: +this.albumForm.get('stars')!.value,
+        opinion: this.albumForm.get('opinion')!.value,
+        dateTime: new Date(),
+        date: this.dateTime.getDay(),
         actiu: true
       }
+      console.log(a.date);
       this.albumsService.addAlbum(a);
     } else {
       alert('formulari invàlid');

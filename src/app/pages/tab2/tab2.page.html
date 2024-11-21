@@ -13,27 +13,27 @@
     </ion-toolbar>
   </ion-header>
   <div>
-    <form [formGroup]="albumForm">
+    <form [formGroup]="postForm">
         
-      title: <br/>
-      <input type="text" formControlName="title" [(ngModel)]="album" (ngModelChange)="onInputChangeAlbum()"/> <br/><br/><br/>
+      Album: <br/>
+      <input type="text" formControlName="album" [(ngModel)]="album" (ngModelChange)="onInputChangeAlbum()"/> <br/><br/><br/>
   
-      artist: <br/>
+      <!-- artist: <br/>
       <input type="text" formControlName="artist" [(ngModel)]="artist" (ngModelChange)="onInputChangeArtist()"/> <br/><br/><br/>
   
       year: <br/>
       <input type="text" formControlName="year" /> <br/><br/><br/>
   
       tracklist: <br/>
-      <input type="text" formControlName="tracklist" /> <br/><br/><br/>
+      <input type="text" formControlName="tracklist" /> <br/><br/><br/> -->
 
-      stars: <br/>
+      Rating: <br/>
       <input type="text" formControlName="stars" /> <br/><br/><br/>
 
-      comment: <br/>
+      Review: <br/>
       <input type="text" formControlName="opinion" /> <br/><br/><br/><br/><br/><br/>
 
-      <ion-button type="button" shape="round" fill="outline" color="success" (click)="saveAlbum()">Share</ion-button>
+      <ion-button type="button" shape="round" fill="outline" color="success" (click)="savePost()">Share</ion-button>
   
     </form>     
 

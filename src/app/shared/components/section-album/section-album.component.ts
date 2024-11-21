@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { IAlbum } from 'src/model/interfaces';
+import { IPost } from 'src/model/interfaces';
 
 @Component({
   selector: 'app-section-album',
@@ -11,7 +11,7 @@ import { IAlbum } from 'src/model/interfaces';
 })
 export class SectionAlbumComponent  implements OnInit {
 
-  @Input() iAlbum!:IAlbum;
+  @Input() iPost!:IPost;
 
   ngOnInit() {}
 

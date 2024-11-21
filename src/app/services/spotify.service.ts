@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { from, map, Observable } from 'rxjs';
-import { IArtist } from 'src/model/interfaces';
+import { IAlbum, IArtist } from 'src/model/interfaces';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +24,7 @@ export class SpotifyService {
   //   })));
   // }
 
-  getAlbum(album: string): Observable<Object[]>{
+  getAlbum(album: string): Observable<IAlbum[]>{
     const search = this.sdk.search(album, ["album"]);
 
     return from(search).pipe(
@@ -32,15 +32,17 @@ export class SpotifyService {
         if (!items?.albums?.items) {
           return []; 
         }
-        console.log(items.albums.items);
         return items.albums.items.slice(0, 5).map((item) => ({
-          name: item.name || "UnKnown",
+          title: item.name || "UnKnown",
+          year: +item.release_date || 0,
+          tracklist: +item.total_tracks || 0,
+          //artist: item.artists,
           image: item.images?.[1]?.url || ""
         }));
       })
     );
   }
-
+  
   getArtist(artist: string): Observable<IArtist[]>{
     const search = this.sdk.search(artist, ["artist"]);
 

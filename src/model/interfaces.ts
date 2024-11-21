@@ -1,16 +1,18 @@
+export interface IPost {
+    id?: string;
+    stars: number;
+    opinion: string;
+    user?: string;
+    dateTime?: Date;
+    date?: number;
+    album?: IAlbum;
+}
 export interface IAlbum {
     id?: string;
     title: string;
-    artist: string;
+    artist?: IArtist;
     year: number;
-    tracklist: string;
-    stars: number;
-    opinion?: string;
-    actiu: boolean;
-    user?: string;
-    dateTime: Date;
-    date: number;
-    //hourMinute: string;
+    tracklist: number;
 }
 
 export interface IArtist {

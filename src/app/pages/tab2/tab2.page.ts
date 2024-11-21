@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IAlbum, IArtist } from 'src/model/interfaces';
+import { IAlbum, IArtist, IPost } from 'src/model/interfaces';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
   selector: 'app-tab2',
@@ -23,7 +24,7 @@ export class Tab2Page{
   // opinion: string = '';
   dateTime: Date = new Date();
   
-  albumForm!: FormGroup;
+  postForm!: FormGroup;
 
   artist?: string;
   artists?: IArtist[];
@@ -31,7 +32,7 @@ export class Tab2Page{
   album?: string;
   albums?: Object[];
 
-  constructor(private albumsService: AlbumsService, private spotifyService: SpotifyService) {
+  constructor(private postsService: PostsService, private spotifyService: SpotifyService) {
     this.createForm();
   }
 
@@ -52,8 +53,8 @@ export class Tab2Page{
   //}
 
   createForm() {
-    this.albumForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
+    this.postForm = new FormGroup({
+      album: new FormControl('', [Validators.required]),
       artist: new FormControl('', [Validators.required]),
       year: new FormControl(''),
       tracklist: new FormControl('') ,
@@ -62,21 +63,22 @@ export class Tab2Page{
     });
   }
 
-  saveAlbum() {
-    if (this.albumForm.valid){
-      const a: IAlbum = {
-        title: this.albumForm.get('title')!.value,
-        artist: this.albumForm.get('artist')!.value,
-        year: +this.albumForm.get('year')!.value,
-        tracklist: this.albumForm.get('tracklist')!.value,
-        stars: +this.albumForm.get('stars')!.value,
-        opinion: this.albumForm.get('opinion')!.value,
-        dateTime: new Date(),
-        date: this.dateTime.getDay(),
-        actiu: true
+  savePost() {
+    if (this.postForm.valid){
+      const a: IPost = {
+        // title: this.albumForm.get('title')!.value,
+        // artist: this.postForm.get('artist')!.value,
+        // year: +this.postForm.get('year')!.value,
+        // tracklist: this.postForm.get('tracklist')!.value,
+        stars: +this.postForm.get('stars')!.value,
+        opinion: this.postForm.get('opinion')!.value,
+        //album: this.albums?.[0],
+        // dateTime: new Date(),
+        // date: this.dateTime.getDay(),
+        // actiu: true
       }
       console.log(a.date);
-      this.albumsService.addAlbum(a);
+      this.postsService.addPost(a);
     } else {
       alert('formulari invàlid');
     }

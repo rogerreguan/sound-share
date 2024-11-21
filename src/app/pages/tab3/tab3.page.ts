@@ -10,7 +10,7 @@ import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page {
 

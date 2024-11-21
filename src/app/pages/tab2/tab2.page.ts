@@ -21,15 +21,15 @@ export class Tab2Page{
   // tracklist: string[] = [];
   // rank: number = 0;
   // opinion: string = '';
-
-  albums?: IAlbum[];
   albumForm!: FormGroup;
 
   artist?: string;
   artists?: IArtist[];
 
+  album?: string;
+  albums?: Object[];
+
   constructor(private albumsService: AlbumsService, private spotifyService: SpotifyService) {
-    this.getAlbums();
     this.createForm();
   }
 
@@ -39,8 +39,8 @@ export class Tab2Page{
   }
 
   onInputChangeAlbum(): void {
-    console.log('Nuevo valor:', this.artist);
-    this.artist!=null? this.getArtists(this.artist): console.log("nada");
+    console.log('Nuevo valor:', this.album);
+    this.album!=null? this.getAlbums(this.album): console.log("nada");
   }
 
   createForm() {
@@ -70,10 +70,12 @@ export class Tab2Page{
     }
   }
 
-  getAlbums() {
-    this.albumsService.getAlbums().subscribe((albums: IAlbum[]) => {
+  getAlbums(album: string) {
+    this.spotifyService.getAlbum(album).subscribe((albums: Object[]) => {
       this.albums = albums;
+      console.log(this.albums);
     });
+
   }
 
   getArtists(artist: string) {

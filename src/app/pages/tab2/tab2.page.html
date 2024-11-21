@@ -16,7 +16,7 @@
     <form [formGroup]="albumForm">
         
       title:
-      <input type="text" formControlName="title" /> <br/>
+      <input type="text" formControlName="title" [(ngModel)]="album" (ngModelChange)="onInputChangeAlbum()"/> <br/>
   
       artist:
       <input type="text" formControlName="artist" [(ngModel)]="artist" (ngModelChange)="onInputChangeArtist()"/> <br/>

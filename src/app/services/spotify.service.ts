@@ -12,16 +12,33 @@ export class SpotifyService {
       this.sdk = SpotifyApi.withClientCredentials("abd9ed15b3cf4817a75c4db30a27356f", "7553ee34dc514855847c3bfa67e95959");
    }
 
-  async getAlbum(){
-    //const sdk = SpotifyApi.withUserAuthorization("abd9ed15b3cf4817a75c4db30a27356f", "https://localhost:3000");
+  // async getAlbum(){
+  //   //const sdk = SpotifyApi.withUserAuthorization("abd9ed15b3cf4817a75c4db30a27356f", "https://localhost:3000");
 
-    const items = await this.sdk.search("Post Malone", ["artist"]);
-    console.log(items.artists.items.slice(0,5).map((item) => ({
-        name: item.name,
-        followers: item.followers.total,
-        popularity: item.popularity,
-        image: item.images[1].url,
-    })));
+  //   const items = await this.sdk.search("Post Malone", ["artist"]);
+  //   console.log(items.artists.items.slice(0,5).map((item) => ({
+  //       name: item.name,
+  //       followers: item.followers.total,
+  //       popularity: item.popularity,
+  //       image: item.images[1].url,
+  //   })));
+  // }
+
+  getAlbum(album: string): Observable<Object[]>{
+    const search = this.sdk.search(album, ["album"]);
+
+    return from(search).pipe(
+      map((items) => {
+        if (!items?.albums?.items) {
+          return []; 
+        }
+        console.log(items.albums.items);
+        return items.albums.items.slice(0, 5).map((item) => ({
+          name: item.name || "UnKnown",
+          image: item.images?.[1]?.url || ""
+        }));
+      })
+    );
   }
 
   getArtist(artist: string): Observable<IArtist[]>{

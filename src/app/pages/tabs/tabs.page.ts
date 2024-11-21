@@ -19,6 +19,5 @@ export class TabsPage {
     addIcons({ triangle, ellipse, square });
     pushService.registerNotifications();
     pushService.addListeners();
-    spotifyService.getAlbum();
   }
 }

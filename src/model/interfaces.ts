@@ -12,3 +12,9 @@ export interface IAlbum {
     date: number;
     //hourMinute: string;
 }
+
+export interface IArtist {
+    name: string;
+    followers: number;
+    image: string;
+}

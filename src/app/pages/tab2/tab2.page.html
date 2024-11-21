@@ -16,10 +16,10 @@
     <form [formGroup]="albumForm">
         
       title: <br/>
-      <input type="text" formControlName="title" /> <br/><br/><br/>
+      <input type="text" formControlName="title" [(ngModel)]="album" (ngModelChange)="onInputChangeAlbum()"/> <br/><br/><br/>
   
       artist: <br/>
-      <input type="text" formControlName="artist" /> <br/><br/><br/>
+      <input type="text" formControlName="artist" [(ngModel)]="artist" (ngModelChange)="onInputChangeArtist()"/> <br/><br/><br/>
   
       year: <br/>
       <input type="text" formControlName="year" /> <br/><br/><br/>

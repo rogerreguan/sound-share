@@ -33,7 +33,6 @@ export class SpotifyService {
       artist: {
         id: album.artists[0].id,
         name: album.artists[0].name,
-        followers: +album.artists[0].followers,
       } as IArtist,
       image: album.images[1].url
     } as IAlbum;

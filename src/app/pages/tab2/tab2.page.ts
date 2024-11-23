@@ -46,8 +46,8 @@ export class Tab2Page{
   }
 
   onInputChangeAlbum(): void {
-    console.log('Nuevo valor:', this.album);
-    this.album!=null? this.getAlbumList(this.album): console.log("nada");
+    //console.log('Nuevo valor:', this.postForm.get('searcher')!.value);
+    this.postForm.get('album')!.value!=null? this.getAlbumList(this.postForm.get('album')!.value): console.log("nada");
   }
 
   //getTime() {
@@ -58,7 +58,7 @@ export class Tab2Page{
 
   createForm() {
     this.postForm = new FormGroup({
-      album: new FormControl('', [Validators.required]),
+      album: new FormControl(''),
       //artist: new FormControl('', [Validators.required]),
       year: new FormControl(''),
       tracklist: new FormControl('') ,
@@ -76,12 +76,13 @@ export class Tab2Page{
         // tracklist: this.postForm.get('tracklist')!.value,
         stars: +this.postForm.get('stars')!.value,
         opinion: this.postForm.get('opinion')!.value,
-        album: this.albumSelected,
+        album: this.albumSelected!,
         // dateTime: new Date(),
         // date: this.dateTime.getDay(),
         // actiu: true
       }
-      console.log(a.date);
+      //console.log(a.date);
+      console.log("Post publicado.")
       this.postsService.addPost(a);
     } else {
       alert('formulari invàlid');
@@ -89,19 +90,22 @@ export class Tab2Page{
   }
 
   getAlbum(albumid: string){
-      if(albumid!=null) {
+      if(albumid) {
         this.spotifyService.getAlbumbyID(albumid).then(value => { this.albumSelected = value})
         this.albums = undefined;
+        this.postForm.get('album')?.setValue('');
        } else{
         console.log("No se ha encontrado el id");
        } 
   }
 
   getAlbumList(album: string) {
-    this.spotifyService.getAlbumList(album).subscribe((albums: IAlbum[]) => {
-      this.albums = albums;
-      console.log(this.albums);
-    });
+    if(album){
+      this.spotifyService.getAlbumList(album).subscribe((albums: IAlbum[]) => {
+        this.albums = albums;
+        console.log(this.albums);
+      });
+    }
 
   }
 

@@ -8,15 +8,17 @@ export interface IPost {
     album?: IAlbum;
 }
 export interface IAlbum {
-    id?: string;
+    id: string;
     title: string;
     artist?: IArtist;
-    year: number;
+    releasedate: string;
     tracklist: number;
+    image?: string;
 }
 
 export interface IArtist {
+    id: string;
     name: string;
-    followers: number;
+    followers?: number;
     image: string;
 }

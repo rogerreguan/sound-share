@@ -15,9 +15,19 @@
   <div>
     <form [formGroup]="postForm">
         
-      Album: <br/>
-      <input type="text" formControlName="album" [(ngModel)]="album" (ngModelChange)="onInputChangeAlbum()"/> <br/><br/><br/>
-  
+      Album: <br/> <br/>
+      <ion-text *ngIf="albumSelected!=null">{{albumSelected.title}} - {{albumSelected.artist?.name}}</ion-text> <br/>
+      <ion-searchbar 
+         formControlName="album"
+         [(ngModel)]="album"
+        (ionInput)="onInputChangeAlbum()" 
+        placeholder="Buscar">
+      </ion-searchbar> <br/>
+      <ion-list *ngIf="albums!=null && albums.length>0">
+        <ion-item *ngFor="let item of albums" (click)="getAlbum(item.id)">
+          {{ item.title }} - {{item.artist?.name}}
+        </ion-item>
+      </ion-list>
       <!-- artist: <br/>
       <input type="text" formControlName="artist" [(ngModel)]="artist" (ngModelChange)="onInputChangeArtist()"/> <br/><br/><br/>
   
@@ -28,10 +38,10 @@
       <input type="text" formControlName="tracklist" /> <br/><br/><br/> -->
 
       Rating: <br/>
-      <input type="text" formControlName="stars" /> <br/><br/><br/>
+      <ion-input type="text" formControlName="stars" /> <br/><br/><br/>
 
       Review: <br/>
-      <input type="text" formControlName="opinion" /> <br/><br/><br/><br/><br/><br/>
+      <ion-input type="text" formControlName="opinion" /> <br/><br/><br/><br/><br/><br/>
 
       <ion-button type="button" shape="round" fill="outline" color="success" (click)="savePost()">Share</ion-button>
   

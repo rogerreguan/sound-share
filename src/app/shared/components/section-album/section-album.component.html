@@ -3,8 +3,8 @@
   <h3 class="listing-location">{{ iPost.dateTime }}</h3>
   <h2 class="listing-heading">{{ iPost.album?.title }}</h2>
   <p class="listing-location">Artist: {{ iPost.album?.artist?.name }}</p>
-  <p class="listing-location">Released: {{ iPost.album?.year }}</p>
-  <p class="listing-location">{{ iPost.stars }}</p>
+  <p class="listing-location">Released: {{ iPost.album?.releasedate }}</p>
+  <p class="listing-location">Rating: {{ iPost.stars }}</p>
   <p class="listing-location">{{ iPost.opinion }}</p>
   <!-- <p class="listing-location" *ngIf="iPost.actiu === true">Disponible: Si</p>
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->

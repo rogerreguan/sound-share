@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonInput, IonSearchbar, IonList, IonItem, IonText, IonTextarea } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IAlbum, IArtist, IPost } from 'src/model/interfaces';
+import { IAlbum, IArtist, IPost, IProfile } from 'src/model/interfaces';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { CommonModule } from '@angular/common';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-tab2',
@@ -36,8 +37,11 @@ export class Tab2Page{
 
   test?: string = '';
 
-  constructor(private postsService: PostsService, private spotifyService: SpotifyService) {
+  uprofile?: IProfile;
+
+  constructor(private postsService: PostsService, private spotifyService: SpotifyService, private profileService: ProfileService) {
     this.createForm();
+    this.getUserProfile();
   }
 
   onInputChangeArtist(): void {
@@ -77,6 +81,7 @@ export class Tab2Page{
         stars: +this.postForm.get('stars')!.value,
         opinion: this.postForm.get('opinion')!.value,
         album: this.albumSelected!,
+        user: this.uprofile?.username
         // dateTime: new Date(),
         // date: this.dateTime.getDay(),
         // actiu: true
@@ -100,6 +105,7 @@ export class Tab2Page{
   }
 
   getAlbumList(album: string) {
+
     if(album){
       this.spotifyService.getAlbumList(album).subscribe((albums: IAlbum[]) => {
         this.albums = albums;
@@ -114,7 +120,12 @@ export class Tab2Page{
       this.artists = artists;
       console.log(this.artists);
     });
+  }
 
+  getUserProfile(){
+    this.profileService.getUserProfile()?.subscribe((uprofile)=>{
+      uprofile ? this.uprofile = uprofile : console.log("no user logged");
+    });
   }
 
   

@@ -16,24 +16,24 @@
   <form (ngSubmit)="register()" [formGroup]="credentials">
 
     <ion-item fill="solid" class="ion-margin-bottom">
-      <input placeholder="Username" type="username" formControlName="username"/>
+      <ion-input placeholder="Username" type="username" formControlName="username"/>
       <ion-note slot="error" *ngIf="(username?.dirty || username?.touched) && username?.errors">Username</ion-note>
     </ion-item>
 
     <ion-item fill="solid" class="ion-margin-bottom">
-      <input placeholder="Email" type="email" formControlName="email"/>
+      <ion-input placeholder="Email" type="email" formControlName="email"/>
       <ion-note slot="error" *ngIf="(email?.dirty || email?.touched) && email?.errors">Email is invalid</ion-note>
     </ion-item>
     
     <ion-item fill="solid" class="ion-margin-bottom">
-      <input type="password" placeholder="Password" formControlName="password"/>
+      <ion-input type="password" placeholder="Password" formControlName="password"/>
       <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">
         Password needs to be 6 characters
       </ion-note>
     </ion-item>
 
     <ion-item fill="solid" class="ion-margin-bottom">
-      <input  placeholder="Confirm Password"/>
+      <ion-input  type="password" placeholder="Confirm Password"/>
       <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">
         Password needs to be 6 characters
       </ion-note>

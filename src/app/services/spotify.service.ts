@@ -12,18 +12,6 @@ export class SpotifyService {
       this.sdk = SpotifyApi.withClientCredentials("abd9ed15b3cf4817a75c4db30a27356f", "7553ee34dc514855847c3bfa67e95959");
    }
 
-  // async getAlbum(){
-  //   //const sdk = SpotifyApi.withUserAuthorization("abd9ed15b3cf4817a75c4db30a27356f", "https://localhost:3000");
-
-  //   const items = await this.sdk.search("Post Malone", ["artist"]);
-  //   console.log(items.artists.items.slice(0,5).map((item) => ({
-  //       name: item.name,
-  //       followers: item.followers.total,
-  //       popularity: item.popularity,
-  //       image: item.images[1].url,
-  //   })));
-  // }
-
   async getAlbumbyID(albumid: string): Promise<IAlbum>{
     const album = await this.sdk.albums.get(albumid);
     return {
@@ -33,7 +21,8 @@ export class SpotifyService {
       artist: {
         id: album.artists[0].id,
         name: album.artists[0].name,
-      } as IArtist,
+        image: null
+      },
       image: album.images[1].url
     } as IAlbum;
   }

@@ -15,10 +15,15 @@ export interface IAlbum {
     tracklist: number;
     image?: string;
 }
-
 export interface IArtist {
     id: string;
     name: string;
-    followers?: number;
-    image: string;
+    followers?: number | null;
+    image: string | null;
+}
+
+export interface IProfile {
+    id: string;
+    username?: string;
+    image?: string;
 }

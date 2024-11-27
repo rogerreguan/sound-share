@@ -13,9 +13,12 @@
     </ion-toolbar>
   </ion-header>
 
-  
+  <ion-text>email: {{ email }}</ion-text><br>
+  <ion-text>Username: {{username}}</ion-text><br>
 
-  <div>email: {{ email }}</div>
-
-  <div (click)="signOut()">Cerrar Sesión</div>
+  <ion-button (click)="signOut()">Cerrar Sesión</ion-button>
+  <h1>Tus Posts</h1>
+  <section class="results">
+    <app-section-album *ngFor="let post of ListPosts" [iPost]="post"></app-section-album>
+  </section>
 </ion-content>

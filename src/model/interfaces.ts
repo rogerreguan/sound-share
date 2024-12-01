@@ -14,6 +14,7 @@ export interface IAlbum {
     releasedate: string;
     tracklist: number;
     image?: string;
+    url?: string
 }
 export interface IArtist {
     id: string;

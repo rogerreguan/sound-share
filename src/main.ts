@@ -9,13 +9,22 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { environment } from './environments/environment';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
-    provideRouter(routes, withPreloading(PreloadAllModules)), provideFirebaseApp(() => initializeApp({"projectId":"sound-share-dfbf7","appId":"1:1004875925541:web:11c46e922d2f22cbdb97cc","storageBucket":"sound-share-dfbf7.firebasestorage.app","apiKey":environment.FirebaseApiKey,"authDomain":"sound-share-dfbf7.firebaseapp.com","messagingSenderId":"1004875925541","measurementId":"G-K443HQ8B2V"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideDatabase(() => getDatabase()),
+    provideRouter(routes, withPreloading(PreloadAllModules)), 
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideDatabase(() => getDatabase()),
+    provideStorage(() => getStorage())
   ],
 });
 
-//test 456
+defineCustomElements(window);
+
+//test 123

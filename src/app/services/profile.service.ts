@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { addDoc, collection, collectionData, doc, docData, Firestore, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage, uploadString } from '@angular/fire/storage';
@@ -10,8 +10,9 @@ import { IProfile } from 'src/model/interfaces';
   providedIn: 'root'
 })
 export class ProfileService {
-
-  constructor(private auth: Auth, private firestore: Firestore) {}
+  
+  constructor(private auth: Auth, private firestore: Firestore, private storage: Storage) {
+  }
   // private storage: Storage
   createUserProfile(username: IProfile) {
     const colfPosts = collection(this.firestore, `users`);
@@ -23,8 +24,8 @@ export class ProfileService {
     return updateDoc(docfPost, { ...user });
   }
 
-  getUserProfileById(id: string): Observable<any>{
-    const docfUProfile= doc(this.firestore, `users/${id}`);
+  getUserProfileById(id: string): Observable<any> {
+    const docfUProfile = doc(this.firestore, `users/${id}`);
     return from(getDoc(docfUProfile)).pipe(
       map((snapshot) => {
         if (snapshot.exists()) {
@@ -42,11 +43,11 @@ export class ProfileService {
     // return docData(docfPost, {idField: 'id'}) as Observable<IProfile>;
   }
 
-	getUserProfile(): Observable<IProfile | null> {
+  getUserProfile(): Observable<IProfile | null> {
 
-      const user = this.auth.currentUser;
-      if(user){
-		  const userColRef = collection(this.firestore, `users`);
+    const user = this.auth.currentUser;
+    if (user) {
+      const userColRef = collection(this.firestore, `users`);
       const userQuery = query(userColRef, where("id", "==", user.uid));
 
       return from(getDocs(userQuery)).pipe(
@@ -64,40 +65,65 @@ export class ProfileService {
           return of(null);
         })
       );
-      
-      }else{
-        console.log("no user logged");
-        return of(null);
-      }
-	}
 
-  getProfiles() : Observable<IProfile[]>{
-
-    const colfPosts = collection(this.firestore, 'users');
-    return collectionData(colfPosts, {idField: 'id'}) as Observable<IProfile[]>;
-    
+    } else {
+      console.log("no user logged");
+      return of(null);
+    }
   }
 
-	// async uploadImage(cameraFile: Photo) {
-	// 	const user = this.auth.currentUser;
-	// 	const path = `uploads/${user!.uid}/profile.webp`;
-	// 	const storageRef = ref(this.storage, path);
+  getProfiles(): Observable<IProfile[]> {
 
-	// 	try {
+    const colfPosts = collection(this.firestore, 'users');
+    return collectionData(colfPosts, { idField: 'id' }) as Observable<IProfile[]>;
 
-  //     if (!cameraFile.base64String) throw new Error("Base64String undefined.");
-	// 		await uploadString(storageRef, cameraFile.base64String, 'base64');
+  }
 
-	// 		const imageUrl = await getDownloadURL(storageRef);
+  async uploadImage(cameraFile: Photo) {
+    const user = this.auth.currentUser;
+    console.log("usuario: ", user!.uid);
+    if (user) {
+      const path = `uploads/${user!.uid}/profile.webp`;
+      console.log("userpath", path);
+      console.log(this.storage);
+      const storageRef = ref(this.storage, path);
 
-	// 		const userDocRef = doc(this.firestore, `users/${user!.uid}`);
-	// 		await setDoc(userDocRef, {
-	// 			imageUrl
-	// 		});
-	// 		return true;
-	// 	} catch (e) {
-	// 		return null;
-	// 	}
-	// }
+      try {
+
+        if (!cameraFile.base64String) throw new Error("Base64String undefined.");
+        await uploadString(storageRef, cameraFile.base64String, 'base64');
+
+        const imageUrl = await getDownloadURL(storageRef);
+        const userColRef = collection(this.firestore, `users`);
+        const userQuery = query(userColRef, where("id", "==", user.uid));
+        const querySnapshot = await getDocs(userQuery);
+        const DocRef = querySnapshot.docs[0].ref;
+        // const ActualUser = from(getDocs(userQuery)).pipe(
+        //   map((querySnapshot) => {
+        //     if (!querySnapshot.empty) {
+        //       const documentData = querySnapshot.docs[0].data();
+        //       return documentData as IProfile;
+        //     } else {
+        //       console.log("No Document found.");
+        //       return null;
+        //     }
+        //   }),
+        //   catchError((error) => {
+        //     console.error("Error obtaining Documents:", error);
+        //     return of(null);
+        //   })
+        // );
+        await updateDoc(DocRef, {
+          image: imageUrl
+        });
+        return true;
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+
+  }
 
 }

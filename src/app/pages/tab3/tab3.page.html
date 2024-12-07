@@ -13,6 +13,17 @@
     </ion-toolbar>
   </ion-header>
 
+  <div class="preview">
+    <ion-avatar (click)="changeImage()">
+      <img *ngIf="image; else placheolder_avatar;" [src]="image" />
+      <ng-template #placheolder_avatar>
+        <div class="fallback">
+          <p>Select avatar</p>
+        </div>
+      </ng-template>
+    </ion-avatar>
+  </div>
+
   <ion-text>email: {{ email }}</ion-text><br>
   <ion-text>Username: {{username}}</ion-text><br>
 

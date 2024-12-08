@@ -8,6 +8,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { CommonModule } from '@angular/common';
 import { ProfileService } from 'src/app/services/profile.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-tab2',
@@ -38,6 +39,8 @@ export class Tab2Page{
   test?: string = '';
 
   uprofile?: IProfile;
+
+  ListPosts?: IPost[];
 
   constructor(private postsService: PostsService, private spotifyService: SpotifyService, private profileService: ProfileService) {
     this.createForm();
@@ -78,6 +81,7 @@ export class Tab2Page{
         // artist: this.postForm.get('artist')!.value,
         // year: +this.postForm.get('year')!.value,
         // tracklist: this.postForm.get('tracklist')!.value,
+        //id: this.generateRandomId(),
         stars: +this.postForm.get('stars')!.value,
         opinion: this.postForm.get('opinion')!.value,
         album: this.albumSelected!,
@@ -127,6 +131,24 @@ export class Tab2Page{
       uprofile ? this.uprofile = uprofile : console.log("no user logged");
     });
   }
+
+  getPosts() {
+    this.postsService.getPosts().subscribe((posts: IPost[]) => {
+      this.ListPosts = posts;
+    });
+  }
+
+  // generateRandomId(): string {
+  //   this.getPosts();
+  //   let idUsedPost: boolean | undefined;
+  //   let rid: string;
+  //   do{
+  //     rid = uuidv4();
+  //     idUsedPost =  this.ListPosts?.some(post => post.id == rid);
+  //   }while(idUsedPost)
+  //   return rid;
+  // }
+
 
   
 

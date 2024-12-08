@@ -18,10 +18,32 @@ export class PostsService {
     
   }
 
-  getPostById(id: number): Observable<IPost>{
-    const docfPost= doc(this.firestore, `posts/${id}`);
-      return docData(docfPost, {idField: 'id'}) as Observable<IPost>;
+  getPostById(id: string): Observable<IPost>{
+    const docfAlbum= doc(this.firestore, `posts/${id}`);
+      return docData(docfAlbum, {idField: 'id'}) as Observable<IPost>;
   }
+  
+
+  // getPostById(id: string): Observable<IPost | null>{
+  //     const userColRef = collection(this.firestore, `posts`);
+  //     const userQuery = query(userColRef, where("id", "==", id));
+
+  //     return from(getDocs(userQuery)).pipe(
+  //       map((querySnapshot) => {
+  //         if (!querySnapshot.empty) {
+  //           const documentData = querySnapshot.docs[0].data();
+  //           return documentData as IPost;
+  //         } else {
+  //           console.log("No Document found.");
+  //           return null;
+  //         }
+  //       }),
+  //       catchError((error) => {
+  //         console.error("Error obtaining Documents:", error);
+  //         return of(null);
+  //       })
+  //     );
+  // }
 
   getPostsByUser(username: string): Observable<IPost[]>{
 

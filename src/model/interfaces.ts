@@ -6,6 +6,7 @@ export interface IPost {
     dateTime?: Date;
     date?: number;
     album?: IAlbum;
+    location?: ILocation;
 }
 export interface IAlbum {
     id: string;
@@ -14,7 +15,7 @@ export interface IAlbum {
     releasedate: string;
     tracklist: number;
     image?: string;
-    url?: string
+    url?: string;
 }
 export interface IArtist {
     id: string;
@@ -27,4 +28,9 @@ export interface IProfile {
     id: string;
     username?: string;
     image?: string;
+}
+
+export interface ILocation {
+    x: number;
+    y: number;
 }

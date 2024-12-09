@@ -2,21 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 import { IPost } from 'src/model/interfaces';
 import { ProfileService } from 'src/app/services/profile.service';
+import { LeafletMapComponent } from "../../shared/components/leaflet-map/leaflet-map.component";
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.page.html',
   styleUrls: ['./post.page.scss'],
   standalone: true,
-  imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LeafletMapComponent]
 })
 export class PostPage implements OnInit {
 
-  constructor(private route: ActivatedRoute, private postsService: PostsService, private profileService: ProfileService) { }
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private profileService: ProfileService, private router: Router) { }
   id?: string | null;
   Post?: IPost;
   username?: string;
@@ -47,6 +48,17 @@ export class PostPage implements OnInit {
          console.log("no user logged");
       }
     });
+  }
+
+  DeletePost(){
+    try{
+    if(this.Post){this.postsService.removePost(this.Post);
+    alert("Post Deleted");
+    this.router.navigateByUrl('/tabs/tab1', { replaceUrl: true });
+    }
+    }catch(e){
+      alert("Error.");
+    }
   }
 
 }

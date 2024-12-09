@@ -14,5 +14,9 @@
   <p class="listing-location">Rating: {{ Post?.stars }}</p>
   <p class="listing-location">User: {{ Post?.user }}</p>
   <p class="listing-location">{{ Post?.opinion }}</p>
-  <ion-button *ngIf="Post?.user === this.username">Delete</ion-button>
+  <ion-button *ngIf="Post?.user === this.username" (click)="DeletePost()">Delete</ion-button>
+  <p>Location:</p>
+  <p *ngIf="!Post?.location">Not Found</p>
+  <app-leaflet-map *ngIf="Post?.location" [Location]="Post?.location"></app-leaflet-map>
+
 </ion-content>

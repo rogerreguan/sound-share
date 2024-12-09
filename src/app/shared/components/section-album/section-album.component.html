@@ -10,6 +10,8 @@
   </div>
   <p class="listing-location">{{ iPost.user }} says:</p>
   <p id="opinion" class="opinion" class="listing-location">{{ iPost.opinion }}</p>
+  <ion-button *ngIf="iPost.user === this.username" (click)="DeletePost()">Delete</ion-button>
+  <ion-button [routerLink]="['/post', iPost.id]">Ver</ion-button>
   <ion-button *ngIf="iPost.user === this.username">Delete</ion-button>
   <!-- <p class="listing-location" *ngIf="iPost.actiu === true">Disponible: Si</p>
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->

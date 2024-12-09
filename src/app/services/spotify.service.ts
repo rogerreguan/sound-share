@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { from, map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { IAlbum, IArtist } from 'src/model/interfaces';
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ export class SpotifyService {
   private sdk!: SpotifyApi;
 
   constructor() {
-      this.sdk = SpotifyApi.withClientCredentials("abd9ed15b3cf4817a75c4db30a27356f", "7553ee34dc514855847c3bfa67e95959");
-   }
+      this.sdk = SpotifyApi.withClientCredentials(environment.clientidSpo, environment.secretSpo);
+   } 
 
   async getAlbumbyID(albumid: string): Promise<IAlbum>{
     const album = await this.sdk.albums.get(albumid);
@@ -60,7 +61,8 @@ export class SpotifyService {
             id: item?.artists[0].id,
             name: item?.artists[0].name,
           } as IArtist,
-          image: item?.images?.[1]?.url || ""
+          image: item?.images?.[1]?.url || "",
+          url: item?.external_urls.spotify
         }));
       })
     );

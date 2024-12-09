@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1>Detalle del Postfdsafads</h1>
+  <p>ID del Post: {{ id }}</p>
+  <h3 class="listing-location">{{ Post?.dateTime }}</h3>
+  <h2 class="listing-heading" >{{ Post?.album?.title }}</h2>
+  <p class="listing-location">Artist: {{ Post?.album?.artist?.name }}</p>
+  <p class="listing-location">Released: {{ Post?.album?.releasedate }}</p>
+  <p class="listing-location">Rating: {{ Post?.stars }}</p>
+  <p class="listing-location">User: {{ Post?.user }}</p>
+  <p class="listing-location">{{ Post?.opinion }}</p>
+  <ion-button *ngIf="Post?.user === this.username" (click)="DeletePost()">Delete</ion-button>
+  <p>Location:</p>
+  <p *ngIf="!Post?.location">Not Found</p>
+  <app-leaflet-map *ngIf="Post?.location" [Location]="Post?.location"></app-leaflet-map>
+
+</ion-content>

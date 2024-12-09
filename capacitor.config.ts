@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.soundshare.app',
+  appId: 'io.ionic.starter',
   appName: 'soundshare',
   webDir: 'www'
 };

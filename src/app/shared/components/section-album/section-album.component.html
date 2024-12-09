@@ -1,12 +1,15 @@
 <section class="listing">
   <!-- <h3>{{getTime().getHours()}}:{{getTime().getMinutes()}}h</h3> -->
   <h3 class="listing-location">{{ iPost.dateTime }}</h3>
-  <h2 class="listing-heading">{{ iPost.album?.title }}</h2>
-  <p class="listing-location">Artist: {{ iPost.album?.artist?.name }}</p>
-  <p class="listing-location">Released: {{ iPost.album?.releasedate }}</p>
-  <p class="listing-location">Rating: {{ iPost.stars }}</p>
-  <p class="listing-location">User: {{ iPost.user }}</p>
-  <p class="listing-location">{{ iPost.opinion }}</p>
+  <h2 id="title" class="listing-heading">{{ iPost.album?.title }}</h2>
+  <img src={{iPost.album?.image}}>
+  <div id="details">
+    <p class="listing-location">Artist: {{ iPost.album?.artist?.name }}</p>
+    <p class="listing-location">Released: {{ iPost.album?.releasedate }}</p>
+    <p class="listing-location">Rating: {{ iPost.stars }}</p>
+  </div>
+  <p class="listing-location">{{ iPost.user }} says:</p>
+  <p id="opinion" class="opinion" class="listing-location">{{ iPost.opinion }}</p>
   <ion-button *ngIf="iPost.user === this.username">Delete</ion-button>
   <!-- <p class="listing-location" *ngIf="iPost.actiu === true">Disponible: Si</p>
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->

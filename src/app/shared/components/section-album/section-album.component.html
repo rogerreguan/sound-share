@@ -8,7 +8,8 @@
   <p class="listing-location">User: {{ iPost.user }}</p>
   <p class="listing-location">{{ iPost.opinion }}</p>
   <ion-button *ngIf="iPost.user === this.username" (click)="DeletePost()">Delete</ion-button>
-  <ion-button [routerLink]="['/post', iPost.id]">Ver</ion-button>
+  <ion-button [routerLink]="['/post', iPost.id]">More</ion-button>
+  <ion-button (click)="shareContent()">Share</ion-button>
   <!-- <p class="listing-location" *ngIf="iPost.actiu === true">Disponible: Si</p>
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->
   <!-- <p class="listing-location">{{ iAlbum.user}}</p> -->

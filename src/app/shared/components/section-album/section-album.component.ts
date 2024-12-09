@@ -5,6 +5,7 @@ import { IonButton } from "@ionic/angular/standalone";
 import { ProfileService } from 'src/app/services/profile.service';
 import { Router, RouterLink } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-section-album',
@@ -40,6 +41,15 @@ export class SectionAlbumComponent  implements OnInit {
     }catch(e){
       alert("Error.");
     }
+  }
+
+  async shareContent() {
+    await Share.share({
+      title: 'Test',
+      text: 'Test!',
+      url: 'https://www.google.com',
+      dialogTitle: 'Compartir en redes sociales',
+    });
   }
 
 }

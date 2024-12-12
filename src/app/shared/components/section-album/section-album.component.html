@@ -9,11 +9,20 @@
     <p class="listing-location">Rating: {{ iPost.stars }}</p>
   </div>
   <p class="listing-location">{{ iPost.user }} says:</p>
-  <p id="opinion" class="opinion" class="listing-location">{{ iPost.opinion }}</p>
-  <ion-button *ngIf="iPost.user === this.username" (click)="DeletePost()">Delete</ion-button>
-  <ion-button [routerLink]="['/post', iPost.id]">More</ion-button>
-  <ion-button (click)="shareContent()">Share</ion-button>
+  <p id="opinion" class="listing-location">{{ iPost.opinion }}</p>
+  <div id="buttons">
+    <ion-button class="button" size="small" shape="round" color="success" fill="clear" [routerLink]="['/post', iPost.id]">
+      <i id="more" class="icon ion-md-more"></i>
+    </ion-button>
+    <ion-button class="button" size="small" shape="round" color="success" fill="clear" (click)="shareContent()">
+      <i id="share" class="icon ion-md-share"></i>
+    </ion-button>
+    <ion-button id="delete" size="small" shape="round" color="success" fill="clear" *ngIf="iPost.user === this.username" (click)="DeletePost()">
+      <i id="trash" class="icon ion-md-trash"></i>
+    </ion-button>
+  </div>
   <!-- <p class="listing-location" *ngIf="iPost.actiu === true">Disponible: Si</p>
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->
   <!-- <p class="listing-location">{{ iAlbum.user}}</p> -->
 </section>
+

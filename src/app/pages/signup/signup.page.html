@@ -1,17 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login" color="light"></ion-back-button>
+    </ion-buttons>
     <ion-title>SoundShare</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">signup</ion-title>
+      <ion-title size="large" class="ios-title">Join Us</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <h1>Join us</h1>
+  <h1 *ngIf="!isIOS">Join us</h1>
   
   <form (ngSubmit)="register()" [formGroup]="credentials">
 
@@ -37,7 +40,7 @@
       <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">
         Password needs to be 6 characters
       </ion-note>
-    </ion-item>
+    </ion-item><br/>
 
     <!-- <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button> -->
     <ion-button type="submit" expand="block">Sign Up</ion-button>

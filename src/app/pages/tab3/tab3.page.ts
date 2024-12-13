@@ -65,6 +65,7 @@ export class Tab3Page {
   getPosts() {
     if (this.username) {
       this.postsService.getPostsByUser(this.username).subscribe((posts: IPost[]) => {
+        console.log(posts);
         this.ListPosts = posts;
       });
     }
@@ -107,10 +108,9 @@ export class Tab3Page {
       console.log("entro");
 			const loading = await this.loadingController.create();
 			await loading.present();
-      console.log("entro2");
 			const result = await this.profileService.uploadImage(image);
-      console.log("llego aqui");
 			loading.dismiss();
+      this.getProfile();
 
 			if (!result) {
 				const alert = await this.alertController.create({

@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="medium" class="ios-title">Share your sound</ion-title>
     </ion-toolbar>
   </ion-header>
   <div>
@@ -26,6 +26,7 @@
         <ion-item *ngFor="let item of albums" (click)="getAlbum(item.id)">
           {{ item.title }} - {{item.artist?.name}}
         </ion-item>
+        <br/>
       </ion-list>
       <!-- artist: <br/>
       <input type="text" formControlName="artist" [(ngModel)]="artist" (ngModelChange)="onInputChangeArtist()"/> <br/><br/><br/>
@@ -41,11 +42,11 @@
 
       Review: <br/>
       <ion-input type="text" formControlName="opinion" /> <br/><br/><br/><br/><br/><br/>
-      <ion-checkbox formControlName="location">Show Location: </ion-checkbox> <br/>
+      <ion-checkbox formControlName="location">Show Location: </ion-checkbox> <br/><br/>
 
-      <ion-button type="button" shape="round" fill="outline" color="success" (click)="savePost()">Share</ion-button>
+      <ion-button type="button" expand="block" color="primary" (click)="savePost()">Share</ion-button>
   
-    </form>     
+    </form>
 
   </div>
 </ion-content>

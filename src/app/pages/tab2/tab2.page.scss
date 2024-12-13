@@ -1,17 +1,11 @@
-ion-toolbar {
-    background-color: rgb(29, 185, 84);
-}
-
-ion-title {
-    color: rgb(228, 250, 235);
-}
 
 form {
     text-align: center;
     margin: 10%;
-    color: rgb(29, 185, 84);
+    color: rgb(61, 160, 144);
 }
 
-ion-button {
-    color: rgb(29, 185, 84);
+ion-checkbox {
+    //--checkmark-color: rgb(61, 160, 144);
+    --color-checked: rgb(61, 160, 144);
 }

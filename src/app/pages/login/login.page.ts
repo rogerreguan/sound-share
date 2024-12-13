@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonNote, IonItem, IonButton, IonInput} from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,13 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   	credentials!: FormGroup;
+	isIOS!: boolean;
 
 	constructor(
 		private fb: FormBuilder,
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
+		private platform: Platform
 	) {}
 
 	// Easy access for form fields
@@ -31,10 +34,12 @@ export class LoginPage implements OnInit {
 	}
 
 	ngOnInit() {
+		this.isIOS = this.platform.is('ios');
 		this.credentials = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(6)]]
 		});
+
 	}
 
 	async login() {

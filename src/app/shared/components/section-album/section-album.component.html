@@ -1,4 +1,4 @@
-<section class="listing">
+<section class="listing" [routerLink]="['/post', iPost.id]">
   <!-- <h3>{{getTime().getHours()}}:{{getTime().getMinutes()}}h</h3> -->
   <h3 class="listing-location">{{ iPost.dateTime }}</h3>
   <h2 id="title" class="listing-heading">{{ iPost.album?.title }}</h2>
@@ -10,9 +10,9 @@
   </div>
   <p class="listing-location">{{ iPost.user }} says:</p>
   <p id="opinion" class="opinion" class="listing-location">{{ iPost.opinion }}</p>
-  <ion-button *ngIf="iPost.user === this.username" (click)="DeletePost()">Delete</ion-button>
-  <ion-button [routerLink]="['/post', iPost.id]">More</ion-button>
-  <ion-button (click)="shareContent()">Share</ion-button>
+  <ion-button *ngIf="iPost.user === this.username" (click)="$event.stopPropagation(); DeletePost()">Delete</ion-button>
+  <!-- <ion-button [routerLink]="['/post', iPost.id]">More</ion-button> -->
+  <ion-button (click)="$event.stopPropagation(); shareContent()">Share</ion-button>
   <!-- <p class="listing-location" *ngIf="iPost.actiu === true">Disponible: Si</p>
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->
   <!-- <p class="listing-location">{{ iAlbum.user}}</p> -->

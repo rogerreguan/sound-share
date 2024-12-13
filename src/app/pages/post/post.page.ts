@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonBackButton, IonButtons } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 import { IPost } from 'src/model/interfaces';
@@ -9,12 +9,13 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { LeafletMapComponent } from "../../shared/components/leaflet-map/leaflet-map.component";
 import { Share } from '@capacitor/share';
 
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.page.html',
   styleUrls: ['./post.page.scss'],
   standalone: true,
-  imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LeafletMapComponent]
+  imports: [IonButtons, IonBackButton, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LeafletMapComponent]
 })
 export class PostPage implements OnInit {
 

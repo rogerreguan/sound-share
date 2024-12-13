@@ -49,24 +49,25 @@ export class PostsService {
 
     const postsColRef = collection(this.firestore, `posts`);
     const postsQuery = query(postsColRef, where("user", "==", username));
-
-    return from(getDocs(postsQuery)).pipe(
-      map((querySnapshot) => {
-        if (!querySnapshot.empty) {
-          const postsData: IPost[] = querySnapshot.docs.map(post => {
-            return post.data() as IPost;
-          });
-          return postsData;
-        } else {
-          console.log("No Posts Found.");
-          return [];
-        }
-      }),
-      catchError((error) => {
-        console.error("Error obtaining Posts:", error);
-        return of([]);
-      })
-    );
+    return collectionData(postsQuery, { idField: 'id' }) as Observable<IPost[]>;
+    // return from(getDocs(postsQuery)).pipe(
+    //   map((querySnapshot) => {
+    //     if (!querySnapshot.empty) {
+    //       const postsData: IPost[] = querySnapshot.docs.map(post => {
+    //         console.log(post.data());
+    //         return post.data() as IPost;
+    //       });
+    //       return postsData;
+    //     } else {
+    //       console.log("No Posts Found.");
+    //       return [];
+    //     }
+    //   }),
+    //   catchError((error) => {
+    //     console.error("Error obtaining Posts:", error);
+    //     return of([]);
+    //   })
+    // );
     
   }
 

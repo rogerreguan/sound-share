@@ -6,28 +6,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="medium" class="ios-title">My Profile</ion-title>
     </ion-toolbar>
   </ion-header>
+  <section class="profile-section">
+    <div class="preview">
+      <ion-avatar (click)="changeImage()">
+        <img *ngIf="image; else placheolder_avatar;" [src]="image" />
+        <ng-template #placheolder_avatar>
+          <div class="fallback">
+            <p>Select avatar</p>
+          </div>
+        </ng-template>
+      </ion-avatar>
+    </div>
+    <br>
+    <h2 class="username">{{username}}</h2><br>
+    <ion-text>email: {{ email }}</ion-text><br>
+    
 
-  <div class="preview">
-    <ion-avatar (click)="changeImage()">
-      <img *ngIf="image; else placheolder_avatar;" [src]="image" />
-      <ng-template #placheolder_avatar>
-        <div class="fallback">
-          <p>Select avatar</p>
-        </div>
-      </ng-template>
-    </ion-avatar>
-  </div>
-
-  <ion-text>email: {{ email }}</ion-text><br>
-  <ion-text>Username: {{username}}</ion-text><br>
-
-  <ion-button (click)="signOut()">Cerrar Sesión</ion-button>
+    <ion-button (click)="signOut()">Cerrar Sesión</ion-button>
+  </section>
   <h1>Tus Posts</h1>
   <section class="results">
     <app-section-album *ngFor="let post of ListPosts" [iPost]="post"></app-section-album>

@@ -1,7 +1,35 @@
-ion-toolbar {
-    background-color: rgb(29, 185, 84);
-}
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .preview ion-avatar {
+    width: 120px; /* Tamaño del avatar */
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Asegura que sea circular */
+    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+    background-color: #f1f1f1; /* Fondo para casos sin imagen */
+  }
+  
+  .preview ion-avatar img {
+    width: 100%; /* Escala la imagen al tamaño del avatar */
+    height: 100%;
+    object-fit: cover; /* Corta la imagen para mantener proporción */
+    border-radius: 50%; /* Asegura que la imagen siga siendo circular */
+  }
+  
+  .fallback {
+    font-size: 14px;
+    color: #666; /* Estilo para el texto de "Select avatar" */
+  }
 
-ion-title {
-    color: rgb(228, 250, 235);
-}
+  .username{
+    font-weight: bold;
+  }
+

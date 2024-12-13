@@ -1,29 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, IonInput } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonNote, IonButton, IonInput, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { IProfile } from 'src/model/interfaces';
 import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
   standalone: true,
-  imports: [IonInput, IonButton, IonNote, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonBackButton, IonButtons, IonInput, IonButton, IonNote, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class SignupPage implements OnInit {
   credentials!: FormGroup;
   user!: IProfile;
+  isIOS!: boolean;
 
 	constructor(
 		private fb: FormBuilder,
 		private authService: AuthService,
 		private router: Router,
-		private profileService: ProfileService
+		private profileService: ProfileService,
+		private platform: Platform
 	) {}
 
 	// Easy access for form fields
@@ -40,6 +43,7 @@ export class SignupPage implements OnInit {
 	}
 
 	ngOnInit() {
+		this.isIOS = this.platform.is('ios');
 		this.credentials = this.fb.group({
       		username: ['', [Validators.required, Validators.minLength(5)]],
 			email: ['', [Validators.required, Validators.email]],

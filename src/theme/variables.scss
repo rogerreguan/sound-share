@@ -1,2 +1,49 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+
+:root{
+    --ion-color-primary: rgba(61, 160, 144);
+    --ion-color-secondary: rgba(61, 160, 144, 0);
+    --ion-color-secondary-contrast: rgb(61, 160, 144);
+}
+
+ion-button {
+    --background: rgb(61, 160, 144);
+    --color: rgb(228, 250, 235);
+    //--color: white;
+    // --shape: round;
+    --border-radius: 50px;
+}
+ion-toolbar {
+    --background: rgb(61, 160, 144);
+    background-color: rgb(61, 160, 144);
+    --color: rgb(61, 160, 144);
+}
+
+ion-title {
+    --color: rgb(228, 250, 235);
+    //color-hover: rgb(29, 185, 84);
+}
+
+.ios-title{
+    color: rgb(61, 160, 144);
+}
+
+ion-checkbox {
+    //--checkmark-color: rgb(61, 160, 144);
+    --color-checked: rgb(61, 160, 144) !important;
+}
+
+ion-tab-bar {
+    background-color: rgb(61, 160, 144);
+}
+
+ion-tab-button {
+    color: rgb(228, 250, 235);
+    background-color: rgb(61, 160, 144);
+    --background-hover: rgb(29, 185, 84);
+}
+
+ion-input{
+    --background-color: rgb(228, 250, 235);
+}

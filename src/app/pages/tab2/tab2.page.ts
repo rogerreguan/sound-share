@@ -105,8 +105,11 @@ export class Tab2Page {
         // actiu: true
       }
       //console.log(a.date);
-      console.log("Post publicado.")
+      
       this.postsService.addPost(a);
+      alert("Post published.");
+      this.postForm.reset();
+      this.albumSelected = undefined;
     } else {
       alert('formulari invàlid');
     }

@@ -44,7 +44,7 @@
       <ion-input type="text" formControlName="opinion" /> <br/><br/><br/><br/><br/><br/>
       <ion-checkbox formControlName="location">Show Location: </ion-checkbox> <br/><br/>
 
-      <ion-button type="button" expand="block" color="primary" (click)="savePost()">Share</ion-button>
+      <ion-button type="button" expand="block" color="primary" (click)="savePost()" [disabled]="!postForm.valid">Share</ion-button>
   
     </form>
 

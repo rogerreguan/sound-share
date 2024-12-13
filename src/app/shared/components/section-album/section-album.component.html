@@ -10,7 +10,7 @@
     
   </div>
   <p class="listing-location">{{ iPost.user }} says:</p>
-  <p id="opinion" class="opinion" class="listing-location">{{ iPost.opinion }}</p>
+  <p id="opinion" class="listing-location">{{ iPost.opinion }}</p>
   <ion-button *ngIf="iPost.user === this.username" (click)="$event.stopPropagation(); DeletePost()" color="secondary" id="delete"><i id="trash" class="icon ion-md-trash"></i></ion-button>
   <!-- <ion-button [routerLink]="['/post', iPost.id]">More</ion-button> -->
   <ion-button (click)="$event.stopPropagation(); shareContent()" color="secondary"><i id="share" class="icon ion-md-share"></i></ion-button>
@@ -18,3 +18,4 @@
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->
   <!-- <p class="listing-location">{{ iAlbum.user}}</p> -->
 </section>
+

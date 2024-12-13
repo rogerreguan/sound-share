@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { IPost } from 'src/model/interfaces';
-import { IonButton } from "@ionic/angular/standalone";
+import { IonButton, IonIcon } from "@ionic/angular/standalone";
 import { ProfileService } from 'src/app/services/profile.service';
 import { Router, RouterLink } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
@@ -12,7 +12,7 @@ import { Share } from '@capacitor/share';
   templateUrl: './section-album.component.html',
   styleUrls: ['./section-album.component.scss'],
   standalone: true,
-  imports: [IonButton, CommonModule, RouterLink]
+  imports: [IonIcon, IonButton, CommonModule, RouterLink]
 })
 export class SectionAlbumComponent  implements OnInit {
 

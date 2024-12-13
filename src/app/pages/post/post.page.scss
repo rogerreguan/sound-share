@@ -1,5 +1,17 @@
-.master{
-    background-color:rgb(29, 185, 84);
+ion-toolbar {
+    background-color: rgb(29, 185, 84);
+}
+
+ion-title {
+    color: hsl(139, 68.70%, 93.70%);
+}
+
+ion-button {
+    color: rgb(29, 185, 84);
+}
+
+.tapiz {
+    background-color: aqua !important;
 }
 
 .listing {
@@ -10,9 +22,9 @@
     padding: 4%;
 }
 
-h2 {
+h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: large;
+    font-size: xx-large;
     color: rgb(29, 185, 84);
     //line-height: 200%;
     margin-top: 0%;
@@ -71,17 +83,18 @@ h3 {
 }
 
 i {
-    font-size: 30px;
+    font-size: 50px;
 }
 
-#more:hover {
-    color: green;
+#share {
+    size: 50px;
 }
 
 #share:hover {
     color: green;
 }
 
-#trash:hover {
-    color: red;
+h2 {
+    font-size: medium;
+    color: blue;
 }

@@ -4,7 +4,11 @@ export interface IPost {
     opinion: string;
     user?: string;
     dateTime?: Date;
-    date?: number;
+    year: number;
+    month: number;
+    day: number;
+    hour: number;
+    minute: number;
     album?: IAlbum;
     location?: ILocation;
 }

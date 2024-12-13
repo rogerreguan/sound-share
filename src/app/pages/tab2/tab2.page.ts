@@ -26,6 +26,11 @@ export class Tab2Page {
   // rank: number = 0;
   // opinion: string = '';
   dateTime: Date = new Date();
+  year: number = 0;
+  month: number = 0;
+  day: number = 0;
+  hour: number = 0;
+  minute: number = 0;
 
   postForm!: FormGroup;
 
@@ -99,12 +104,16 @@ export class Tab2Page {
         opinion: this.postForm.get('opinion')!.value,
         album: this.albumSelected!,
         user: this.uprofile?.username,
-        location: this.CurrentLocation
-        // dateTime: new Date(),
-        // date: this.dateTime.getDay(),
-        // actiu: true
+        location: this.CurrentLocation,
+        dateTime: new Date(),
+        year: this.dateTime.getFullYear(),
+        month: this.dateTime.getMonth(),
+        day: this.dateTime.getDay(),
+        hour: this.dateTime.getHours(),
+        minute: this.dateTime.getMinutes(),
+        //actiu: true
       }
-      //console.log(a.date);
+      console.log(a.dateTime);
       console.log("Post publicado.")
       this.postsService.addPost(a);
     } else {

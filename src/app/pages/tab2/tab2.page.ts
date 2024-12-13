@@ -99,7 +99,13 @@ export class Tab2Page {
         opinion: this.postForm.get('opinion')!.value,
         album: this.albumSelected!,
         user: this.uprofile?.username,
-        location: this.CurrentLocation
+        location: this.CurrentLocation,
+        dateTime: new Date(),
+        year: this.dateTime.getFullYear(),
+        month: this.dateTime.getMonth(),
+        day: this.dateTime.getDay(),
+        hour: this.dateTime.getHours(),
+        minute: this.dateTime.getMinutes(),
         // dateTime: new Date(),
         // date: this.dateTime.getDay(),
         // actiu: true

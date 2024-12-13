@@ -8,7 +8,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h3 class="listing-location">{{ Post?.dateTime }}</h3>
   <h2 class="listing-heading" >{{ Post?.album?.title }}</h2>
   <p class="listing-location">Artist: {{ Post?.album?.artist?.name }}</p>
   <p class="listing-location">Released: {{ Post?.album?.releasedate }}</p>
@@ -17,7 +16,8 @@
   <p class="listing-location">{{ Post?.opinion }}</p>
   <ion-button *ngIf="Post?.user === this.username" (click)="DeletePost()">Delete</ion-button>
   <ion-button (click)="shareContent()">Share</ion-button>
-  <p *ngIf="Post?.location">Location:</p>
+  <p *ngIf="Post?.location">Time and location:</p>
+  <h2 class="listing-location">{{ Post?.hour }}:{{ Post?.minute }}h {{ Post?.day }}/{{Post?.month}}/{{Post?.year}}</h2>
   <app-leaflet-map *ngIf="Post?.location" [Location]="Post?.location"></app-leaflet-map>
 
 </ion-content>

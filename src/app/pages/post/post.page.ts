@@ -8,6 +8,7 @@ import { IPost } from 'src/model/interfaces';
 import { ProfileService } from 'src/app/services/profile.service';
 import { LeafletMapComponent } from "../../shared/components/leaflet-map/leaflet-map.component";
 import { Share } from '@capacitor/share';
+import { Timestamp } from 'firebase/firestore';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class PostPage implements OnInit {
   id?: string | null;
   Post?: IPost;
   username?: string;
+  date?: string;
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -36,7 +38,12 @@ export class PostPage implements OnInit {
       this.postsService.getPostById(this.id).subscribe((post: IPost | null)=>{
         if(post){
           console.log(post);
-          this.Post = post;
+          this.Post = {
+            ...post,
+            dateTime: post.dateTime instanceof Timestamp 
+            ? post.dateTime.toDate() // Convertir si es Timestamp
+            : post.dateTime // Convertir usando el método .toDate()
+          };
         }
       });
     }

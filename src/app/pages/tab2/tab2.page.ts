@@ -89,6 +89,7 @@ export class Tab2Page {
   savePost() {
     if (this.postForm.valid) {
       console.log(this.CurrentLocation);
+      const dateTime: Date = new Date();
       const a: IPost = {
         // title: this.albumForm.get('title')!.value,
         // artist: this.postForm.get('artist')!.value,
@@ -100,12 +101,12 @@ export class Tab2Page {
         album: this.albumSelected!,
         user: this.uprofile?.username,
         location: this.CurrentLocation,
-        dateTime: new Date(),
-        year: this.dateTime.getFullYear(),
-        month: this.dateTime.getMonth(),
-        day: this.dateTime.getDay(),
-        hour: this.dateTime.getHours(),
-        minute: this.dateTime.getMinutes(),
+        dateTime: new Date(this.dateTime),
+        year: dateTime.getFullYear(),
+        month: dateTime.getMonth()+1,
+        day: dateTime.getDate(),
+        hour: dateTime.getHours(),
+        minute: dateTime.getMinutes(),
         // dateTime: new Date(),
         // date: this.dateTime.getDay(),
         // actiu: true

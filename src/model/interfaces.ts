@@ -1,9 +1,11 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface IPost {
     id?: string;
     stars: number;
     opinion: string;
     user?: string;
-    dateTime?: Date;
+    dateTime?: Timestamp | Date;
     year: number;
     month: number;
     day: number;

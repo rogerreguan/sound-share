@@ -5,7 +5,7 @@ export interface IPost {
     stars: number;
     opinion: string;
     user?: string;
-    dateTime?: Timestamp | Date;
+    dateTime: Date;
     year: number;
     month: number;
     day: number;

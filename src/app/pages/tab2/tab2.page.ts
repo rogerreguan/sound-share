@@ -101,7 +101,7 @@ export class Tab2Page {
         album: this.albumSelected!,
         user: this.uprofile?.username,
         location: this.CurrentLocation,
-        dateTime: new Date(this.dateTime),
+        dateTime: new Date(dateTime),
         year: dateTime.getFullYear(),
         month: dateTime.getMonth()+1,
         day: dateTime.getDate(),

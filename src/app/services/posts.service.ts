@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, getDocs, orderBy, query, updateDoc, where } from '@angular/fire/firestore';
 import { catchError, from, map, Observable, of } from 'rxjs';
 import { IPost, IProfile } from 'src/model/interfaces';
 
@@ -14,7 +14,8 @@ export class PostsService {
   getPosts() : Observable<IPost[]>{
 
     const colfPosts = collection(this.firestore, 'posts');
-    return collectionData(colfPosts, {idField: 'id'}) as Observable<IPost[]>;
+    const q = query(colfPosts, orderBy('dateTime', 'desc'));
+    return collectionData(q, {idField: 'id'}) as Observable<IPost[]>;
     
   }
 
@@ -48,7 +49,7 @@ export class PostsService {
   getPostsByUser(username: string): Observable<IPost[]>{
 
     const postsColRef = collection(this.firestore, `posts`);
-    const postsQuery = query(postsColRef, where("user", "==", username));
+    const postsQuery = query(postsColRef, where('user', '==', username));
     return collectionData(postsQuery, { idField: 'id' }) as Observable<IPost[]>;
     // return from(getDocs(postsQuery)).pipe(
     //   map((querySnapshot) => {

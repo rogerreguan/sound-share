@@ -28,7 +28,7 @@ export class Tab3Page {
   ListPosts!: IPost[];
 
   constructor(private router: Router, private authService: AuthService, private profileService: ProfileService, private postsService: PostsService, private loadingController: LoadingController, private alertController: AlertController) {
-    
+
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -54,7 +54,7 @@ export class Tab3Page {
     this.profileService.getUserProfile()?.subscribe((uprofile) => {
       if (uprofile?.username) {
         this.username = uprofile.username;
-        if(uprofile?.image) this.image = uprofile!.image;
+        if (uprofile?.image) this.image = uprofile!.image;
         this.getPosts();
       } else {
         console.log("no user logged");
@@ -67,24 +67,39 @@ export class Tab3Page {
       this.postsService.getPostsByUser(this.username).subscribe((posts: IPost[]) => {
         console.log(posts);
         this.ListPosts = posts;
+        this.sortPostsByDateTime();
       });
+      
     }
   }
 
+  sortPostsByDateTime() {
+    this.ListPosts.sort((a, b) => {
+      if (a.dateTime && b.dateTime) {
+        const dateA = new Date(a.dateTime).getTime(); const dateB = new Date(b.dateTime).getTime(); return dateA - dateB;
+      } else if (a.dateTime) {
+        return -1;
+      } else if (b.dateTime) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
   // async changeImage() {
-	// 	try {
+  // 	try {
   //     const image = await Camera.getPhoto({
   //       quality: 90,
   //       allowEditing: false,
   //       resultType: CameraResultType.Base64,
   //       source: CameraSource.Photos // Camera, Photos or Prompt!
   //     });
-  
+
   //     console.log("Foto obtenida:", image);
-  
+
   //     if (image && image.base64String) {
   //       const result = await this.profileService.uploadImage(image);
-  
+
   //       if (!result) {
   //         console.error("No se ha podido realizar la carga de la foto.");
   //       }
@@ -96,31 +111,31 @@ export class Tab3Page {
   //   }
   // }
   async changeImage() {
-		const image = await Camera.getPhoto({
-			quality: 90,
-			allowEditing: false,
-			resultType: CameraResultType.Base64,
-			source: CameraSource.Photos // Camera, Photos or Prompt!
-		});
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Photos // Camera, Photos or Prompt!
+    });
     console.log("imagen: ", image);
 
-		if (image) {
+    if (image) {
       console.log("entro");
-			const loading = await this.loadingController.create();
-			await loading.present();
-			const result = await this.profileService.uploadImage(image);
-			loading.dismiss();
+      const loading = await this.loadingController.create();
+      await loading.present();
+      const result = await this.profileService.uploadImage(image);
+      loading.dismiss();
       this.getProfile();
 
-			if (!result) {
-				const alert = await this.alertController.create({
-					header: 'Upload failed',
-					message: 'There was a problem uploading your avatar.',
-					buttons: ['OK']
-				});
-				await alert.present();
-			}
-		}
+      if (!result) {
+        const alert = await this.alertController.create({
+          header: 'Upload failed',
+          message: 'There was a problem uploading your avatar.',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    }
   }
 
 }

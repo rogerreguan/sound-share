@@ -1,21 +1,24 @@
 <section class="listing" [routerLink]="['/post', iPost.id]">
   <!-- <h3>{{getTime().getHours()}}:{{getTime().getMinutes()}}h</h3> -->
-  <h3 class="listing-location">{{ iPost.hour }}:{{ iPost.minute }}h {{ iPost.day }}/{{iPost.month}}/{{iPost.year}}</h3>
-  <h2 id="title" class="listing-heading">{{ iPost.album?.title }}</h2>
+  <div class="header">
+    <h2 id="title" class="listing-heading">{{ iPost.album?.title }}</h2>
+    <h3 id="time">{{ iPost.hour }}:{{ iPost.minute }}h <br>{{ iPost.day }}/{{ iPost.month }}</h3>
+  </div>
   <img src={{iPost.album?.image}}>
   <div id="details">
     <p class="listing-location">Artist: {{ iPost.album?.artist?.name }}</p>
     <p class="listing-location">Released: {{ iPost.album?.releasedate }}</p>
     <p class="listing-location">Rating: {{ iPost.stars }}</p>
-    
+
   </div>
   <p class="listing-location">{{ iPost.user }} says:</p>
   <p id="opinion" class="listing-location">{{ iPost.opinion }}</p>
-  <ion-button *ngIf="iPost.user === this.username" (click)="$event.stopPropagation(); DeletePost()" color="secondary" id="delete"><i id="trash" class="icon ion-md-trash"></i></ion-button>
+  <ion-button *ngIf="iPost.user === this.username" (click)="$event.stopPropagation(); DeletePost()" color="secondary"
+    id="delete"><i id="trash" class="icon ion-md-trash"></i></ion-button>
   <!-- <ion-button [routerLink]="['/post', iPost.id]">More</ion-button> -->
-  <ion-button (click)="$event.stopPropagation(); shareContent()" color="secondary"><i id="share" class="icon ion-md-share"></i></ion-button>
+  <ion-button (click)="$event.stopPropagation(); shareContent()" color="secondary"><i id="share"
+      class="icon ion-md-share"></i></ion-button>
   <!-- <p class="listing-location" *ngIf="iPost.actiu === true">Disponible: Si</p>
   <p class="listing-location" *ngIf="iPost.actiu === false">Disponible: No</p> -->
   <!-- <p class="listing-location">{{ iAlbum.user}}</p> -->
 </section>
-
